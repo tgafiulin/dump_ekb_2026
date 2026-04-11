@@ -1,0 +1,40 @@
+---
+description: Styling rules for styles.css in this Shower.js presentation. Apply when editing CSS, adjusting visual consistency, or adding presentation-specific styling on top of the base Shower theme.
+globs: styles.css, **/*.css
+alwaysApply: false
+---
+
+# Theme override rules
+
+## Theme strategy
+
+- The base Shower theme is the foundation and should not be rewritten without explicit user request.
+- Prefer additive styling on top of the existing theme.
+- Treat this stylesheet as a layer of overrides and presentation-specific components.
+
+## Visual consistency priorities
+
+- Prioritize consistency of colors, spacing, and composition.
+- When unsure, preserve the existing visual rhythm instead of introducing a new one.
+- Keep slide templates visually related to each other.
+
+## CSS editing discipline
+
+- Prefer extending existing project classes over rewriting base theme selectors.
+- Avoid broad selectors that may unexpectedly affect many slides.
+- Make the smallest CSS change that achieves the requested result.
+- Do not change HTML structure only to make CSS easier unless approved.
+
+## New classes
+
+- Reuse existing classes first.
+- Create a new class only if:
+  - existing classes are not enough; and
+  - the class is likely reusable.
+- Avoid one-off styling classes for tiny local fixes.
+
+## Images and layout
+
+- When styling slides with images, preserve the current template unless the user explicitly asks for a different template.
+- Do not turn a centered-image slide into a fullscreen-image slide without approval.
+- Do not let image styling silently redefine spacing rules for other slides.

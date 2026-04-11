@@ -1,0 +1,39 @@
+---
+description: Rules for editing Shower.js HTML structure in index.html. Apply when creating, editing, or refactoring slides in the presentation.
+globs: index.html, **/*.html
+alwaysApply: false
+---
+
+# Shower.js structure rules
+
+## Shower invariants
+
+- Treat this project as a Shower.js presentation, not as a generic landing page.
+- Preserve Shower-compatible slide structure.
+- Each slide must remain a separate `<section class="slide">`.
+- Do not nest slides inside other slides.
+- Do not replace Shower semantics with custom JS-driven slide systems.
+
+## Preferred built-in Shower patterns
+
+- Prefer `.next` for staged reveal of list items or content blocks.
+- Prefer `.shout` for short section-divider or emphasis slides only.
+- Use Shower-native structure first, then add project-specific classes only when needed.
+
+## Slide composition
+
+- Each slide should represent one clear idea.
+- Keep slide markup clean and shallow; avoid unnecessary wrappers.
+- Preserve readable HTML structure so slides can be edited manually later.
+
+## Editing discipline
+
+- When adding a new slide, choose one of the approved project slide templates.
+- If the request does not clearly match one template, ask which template to use before generating markup.
+- Do not invent a brand new slide layout without explicit user approval.
+
+## Images
+
+- Use `<img>` as the default image insertion method.
+- Do not restructure the whole slide layout just because an image is added.
+- Fit the image into the closest approved template first.

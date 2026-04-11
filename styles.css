@@ -1,0 +1,452 @@
+@import url('./icons/icons.css');
+
+@font-face {
+    font-family: 'DeckIcons';
+    src: url('./node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2')
+            format('woff2'),
+        url('./node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff')
+            format('woff');
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+}
+
+/* —— Deck theme —— */
+.shower {
+    --deck-accent: #0d9488;
+    --deck-accent-deep: #0f766e;
+    --deck-surface-1: #f8fafc;
+    --deck-surface-2: #e2e8f0;
+    --deck-ink: #0f172a;
+    --deck-muted: #475569;
+    /* Внутренние отступы слайда (нижний — чтобы контент не упирался в край кадра) */
+    --slide-pad-top: 35px;
+    --slide-pad-bottom: 28px;
+    /* Единый тёмный фон для всех .slide.black (как на титуле) */
+    --deck-slide-black-bg:
+        radial-gradient(
+            ellipse 90% 65% at 92% 8%,
+            rgb(45 212 191 / 14%) 0%,
+            transparent 52%
+        ),
+        radial-gradient(
+            ellipse 70% 55% at 8% 88%,
+            rgb(56 189 248 / 10%) 0%,
+            transparent 48%
+        ),
+        linear-gradient(152deg, #0b1220 0%, #1e293b 38%, #0f172a 100%);
+}
+
+/* Content slides: soft gradient + top accent stripe */
+.slide:not(.black) {
+    background: linear-gradient(165deg,
+            var(--deck-surface-1) 0%,
+            #f1f5f9 42%,
+            var(--deck-surface-2) 100%);
+}
+
+.slide:not(.black)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    z-index: 2;
+    background: linear-gradient(90deg,
+            var(--deck-accent-deep),
+            var(--deck-accent),
+            #5eead4);
+}
+
+.slide h2 {
+    color: var(--deck-ink);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    border-left: 4px solid var(--deck-accent);
+    padding: 0.08em 0 0.08em 0.55em;
+    margin-top: 0;
+    margin-bottom: 0.35em;
+}
+
+/* Тёмный слайд (модификатор Shower): светлый текст поверх фона Ribbon / градиентов */
+.slide.black h2 {
+    color: #f8fafc;
+}
+
+.slide.black :is(.slide-lead, .slide-story, .slide-one-liner, .slide-thesis) {
+    color: #e2e8f0;
+}
+
+.slide.black :is(.slide-tagline, .slide-caption) {
+    color: rgb(203 213 225);
+}
+
+.slide.black li {
+    color: #e2e8f0;
+}
+
+.slide.black {
+    background: var(--deck-slide-black-bg);
+}
+
+/* Заголовок + контент: без min-height на всю высоту — иначе список «прыгает»
+   по вертикали при разном числе пунктов (flex + center). Контент идёт сверху. */
+.slide:not(.black)>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    max-height: calc(var(--slide-height) - var(--slide-pad-top) - var(--slide-pad-bottom));
+    min-height: 0;
+}
+
+.slide:not(.black)>div>h2 {
+    flex-shrink: 0;
+    margin-bottom: 0.85rem;
+}
+
+.slide:not(.black)>div>h2:last-child {
+    margin-bottom: 0;
+}
+
+/* Chapter dividers (black + shout) */
+.slide.chapter.black h2.shout {
+    color: #f8fafc;
+    border-left: none;
+    text-align: center;
+    font-size: clamp(56px, calc(var(--slide-height) * 0.12), 110px);
+    line-height: 1.08;
+    text-shadow: 0 2px 28px rgb(0 0 0 / 40%);
+}
+
+/* Intro / myth phases: less list, more prose */
+.slide-lead,
+.slide-hook,
+.slide-tagline,
+.slide-story,
+.slide-caption,
+.slide-one-liner {
+    margin: 0;
+    max-width: 38em;
+    line-height: 1.45;
+    color: var(--deck-ink);
+    font-size: clamp(1.05rem, calc(var(--slide-height) * 0.036), 1.55rem);
+}
+
+.slide-lead {
+    font-weight: 600;
+    margin-top: 0.35em;
+}
+
+.slide-hook {
+    margin-top: 1rem;
+    padding: 0.85em 1em;
+    background: rgb(255 255 255 / 78%);
+    border-radius: 10px;
+    border-left: 3px solid var(--deck-accent);
+    box-shadow:
+        0 1px 2px rgb(15 23 42 / 5%),
+        0 8px 28px rgb(15 23 42 / 7%);
+}
+
+.slide-tagline {
+    margin-top: 0.75em;
+    color: var(--deck-muted);
+    font-size: 1.45rem;
+}
+
+.slide-story {
+    margin-top: 0.65em;
+    font-size: clamp(1.08rem, calc(var(--slide-height) * 0.037), 1.62rem);
+}
+
+.slide-caption {
+    margin-top: 0.65em;
+    color: var(--deck-muted);
+    font-size: 1.35rem;
+}
+
+.slide-one-liner {
+    margin-top: 0.5em;
+    font-size: clamp(1.08rem, calc(var(--slide-height) * 0.037), 1.62rem);
+}
+
+.slide-thesis {
+    margin: 0;
+    font-size: clamp(1.1rem, calc(var(--slide-height) * 0.04), 2.05rem);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--deck-ink);
+    text-wrap: balance;
+    max-width: 42em;
+}
+
+
+/* Сетка 2×2 для превью (любой слайд с .doklad-preview-images) */
+.slide.slide-doklad-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.slide.slide-doklad-preview .doklad-preview-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 16px;
+    flex: 1 1 auto;
+    align-self: stretch;
+    width: 100%;
+    max-width: min(920px, 100%);
+    margin-top: 0;
+    min-height: 0;
+    align-content: center;
+}
+
+.slide.slide-doklad-preview .doklad-preview-images img {
+    width: 100%;
+    height: auto;
+    max-height: min(260px,
+            calc((var(--slide-height) - var(--slide-pad-top) - var(--slide-pad-bottom) - 36px) / 2));
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow:
+        0 1px 2px rgb(15 23 42 / 6%),
+        0 6px 20px rgb(15 23 42 / 8%);
+}
+
+/* Тёмный кадр под одну фото (h-image), без акцентной полоски сверху */
+.slide.slide-photo-ambient:not(.black) {
+    background: #0b1220;
+}
+
+.slide.slide-photo-ambient:not(.black)::before {
+    display: none;
+}
+
+
+.slide.text-with-image {
+    position: relative;
+    padding: 0;
+    display: flex;
+}
+
+.slide.text-with-image > *:first-child {
+    padding: clamp(24px, calc(var(--slide-height) * 0.08), 56px) 0
+        clamp(24px, calc(var(--slide-height) * 0.08), 56px)
+        calc(var(--slide-side) / 2);
+    align-self: center;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.slide.text-with-image > img.present-img {
+    position: absolute;
+    top: 50%;
+    left: auto;
+    right: calc(var(--slide-side) / 2);
+    transform: translateY(-50%);
+    height: auto;
+    width: auto;
+    max-width: min(44%, 420px);
+    max-height: min(78%,
+            calc(var(--slide-height) - var(--slide-pad-top) - var(--slide-pad-bottom) - 40px));
+    object-fit: contain;
+}
+
+.slide.h-fullimage {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.slide.h-fullimage h2 {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg,
+            var(--deck-accent-deep),
+            var(--deck-accent));
+    border-left: none;
+    color: #f8fafc;
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 40px 0 0 var(--slide-side);
+}
+
+.slide .shout {
+    font-size: clamp(36px, calc(var(--slide-height) * 0.11), 110px);
+    padding: 0 5%;
+    box-sizing: border-box;
+    border-left: none;
+}
+
+.slide {
+    padding: var(--slide-pad-top) var(--slide-side) var(--slide-pad-bottom);
+}
+
+.h-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: min(320px, calc(var(--slide-height) * 0.55));
+}
+
+.h-fullimage img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Lists: isolated and conflict-safe */
+.shower .slide ul.deck-list {
+    --deck-list-marker-size: 1.18em;
+    --deck-list-marker-gap: 0.58em;
+    --deck-list-item-gap: 0.48em;
+    --deck-list-marker-bg: linear-gradient(
+        145deg,
+        #14b8a6 0%,
+        #0ea5e9 52%,
+        #6366f1 100%
+    );
+    --deck-list-marker-ring: 0 0 0 3px rgb(20 184 166 / 22%);
+    --deck-list-number-bg: linear-gradient(
+        145deg,
+        #0f766e 0%,
+        #0284c7 45%,
+        #4338ca 100%
+    );
+    position: relative;
+    flex: 0 1 auto;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0 var(--ribbon-size) 0 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-size: clamp(1.05rem, calc(var(--slide-height) * 0.038), 1.65rem);
+}
+
+.shower .slide ul.deck-list > li {
+    position: relative;
+    display: block !important;
+    margin: var(--deck-list-item-gap) 0 0;
+    padding-left: calc(var(--deck-list-marker-size) + var(--deck-list-marker-gap));
+    line-height: 1.38;
+    color: var(--deck-ink);
+}
+
+.shower .slide ul.deck-list > li:first-child {
+    margin-top: 0;
+}
+
+.shower .slide ul.deck-list > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    transform: translateY(-50%);
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: var(--deck-list-marker-size);
+    height: var(--deck-list-marker-size);
+    border-radius: 999px;
+    background: var(--deck-list-marker-bg);
+    box-shadow: var(--deck-list-marker-ring);
+}
+
+.shower .slide ul.deck-list > li[data-glyph]::before {
+    content: attr(data-glyph);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    font-family: 'DeckIcons', sans-serif;
+    font-size: 0.95em;
+    color: #0f766e;
+    line-height: 1;
+}
+
+.shower .slide ul.deck-list.tight {
+    --deck-list-item-gap: 0.34em;
+}
+
+.shower .slide ul.deck-list > li.icon:not([data-glyph])::before {
+    content: '✓';
+    display: grid;
+    place-items: center;
+    color: #f0fdfa;
+    font-weight: 800;
+    font-size: 0.66em;
+    line-height: 1;
+}
+
+.shower .slide ul.deck-list.roadmap {
+    counter-reset: deck-roadmap;
+}
+
+.shower .slide ul.deck-list.roadmap > li {
+    counter-increment: deck-roadmap;
+}
+
+.shower .slide ul.deck-list.roadmap > li::before {
+    content: counter(deck-roadmap);
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 0.62em;
+    font-weight: 700;
+    color: #f8fafc;
+    font-variant-numeric: tabular-nums;
+    background: var(--deck-list-number-bg);
+}
+
+.shower .slide ul.deck-list.roadmap > li[data-glyph]::before {
+    content: attr(data-glyph);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.shower .slide.black ul.deck-list {
+    --deck-list-marker-ring: 0 0 0 3px rgb(20 184 166 / 18%);
+}
+
+.shower .slide.black ul.deck-list > li {
+    color: #e2e8f0;
+}
+
+.shower .slide.black ul.deck-list > li[data-glyph]::before {
+    color: #5eead4;
+}
+
+/* Титульный слайд: только типографика (фон — общий .slide.black) */
+.slide.black.slide-title h2.shout {
+    font-size: clamp(32px, calc(var(--slide-height) * 0.09), 76px);
+    line-height: 1.12;
+    padding: 0 clamp(24px, calc(var(--slide-width) * 0.04), 56px);
+    border-left: none;
+    text-shadow: 0 2px 32px rgb(0 0 0 / 35%);
+}
+
+.slide.black.slide-title .title-sub {
+    position: absolute;
+    right: 0;
+    bottom: 100px;
+    left: 0;
+    margin: 0;
+    padding: 0 var(--slide-side);
+    text-align: center;
+    text-wrap: balance;
+    font-size: 26px;
+    line-height: 1.4;
+    color: rgb(248 250 252 / 76%);
+}

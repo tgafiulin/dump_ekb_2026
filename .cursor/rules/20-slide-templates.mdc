@@ -1,0 +1,66 @@
+---
+description: Canonical slide template rules for this presentation. Apply when creating new slides, redesigning existing slides, or trying to keep the deck visually consistent.
+globs: index.html, **/*.html
+alwaysApply: false
+---
+
+# Approved slide templates
+
+## General rule
+
+- Every new slide must be based on one of the approved templates below.
+- Do not create unique layout patterns for each new slide.
+- Reuse these templates consistently across the deck.
+
+## Approved templates
+
+### 1. Title slide
+
+- Main use: opening slide.
+- Typical structure: title, optional subtitle, optional small meta line.
+- Visual role: establishes the deck style.
+
+### 2. Section slide
+
+- Main use: transition between large parts of the talk.
+- Prefer a short phrase or heading.
+- `.shout` is preferred when appropriate.
+
+### 3. Simple list slide
+
+- Main use: 3-6 concise bullets.
+- Structure: heading + list.
+- `.next` can be used for progressive reveal.
+
+### 4. Simple text slide
+
+- Main use: short explanation without a bullet list.
+- Structure: heading + one short paragraph or 2-3 compact text blocks.
+- Use this as a fallback instead of inventing a custom layout.
+
+### 5. Centered image slide
+
+- Main use: image as the main content.
+- Variants:
+  - with heading above;
+  - without heading.
+- Default behavior: image is placed inside the existing slide structure, not as a full-screen background.
+
+### 6. Fullscreen image slide
+
+- Main use: strong visual slide.
+- Variants:
+  - image only;
+  - image with overlay heading.
+- Use only when the image should dominate the slide.
+
+## Template selection
+
+- If the user asks for a new slide and does not specify a type, pick the closest matching approved template.
+- If two templates seem equally valid, ask which one to use.
+- Do not mix multiple templates into a new hybrid layout unless explicitly requested.
+
+## Consistency rules
+
+- Keep spacing, heading placement, and image treatment consistent across slides of the same template type.
+- A new slide should feel like another instance of an existing system, not a new design experiment.

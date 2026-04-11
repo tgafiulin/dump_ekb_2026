@@ -1,0 +1,10 @@
+---
+description: Content rules for Shower presentation writing
+globs: **/*.html, content/**/*
+---
+
+- One idea per slide.
+- Prefer short bullets over long paragraphs.
+- Use `.next` for staged reveals.
+- Avoid more than 6 bullets per slide.
+- Write concise, presentation-friendly Russian copy by default.

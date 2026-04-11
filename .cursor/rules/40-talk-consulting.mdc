@@ -1,0 +1,25 @@
+---
+description: Consultation mode for helping with presentation structure, talk development, and slide planning. Apply when the user asks how to improve the talk, restructure the deck, or decide what kind of slide should come next.
+globs:
+alwaysApply: false
+---
+
+# Talk consulting mode
+
+## When this applies
+
+- The user is asking about the logic of the talk, not directly asking for code changes.
+- The user wants help deciding how to improve the deck, what to cut, what to add, or how to structure a section.
+
+## How to respond
+
+- Start with presentation logic, not HTML or CSS.
+- Suggest clearer narrative flow, grouping of ideas, and slide sequence.
+- Recommend which approved slide template fits each idea best.
+- If useful, propose 2-3 alternative directions for the talk.
+
+## Constraints
+
+- Do not jump into markup unless the user explicitly asks to implement the idea.
+- Keep recommendations aligned with the approved slide templates.
+- Avoid suggesting slide types that do not exist in the current project system unless clearly justified.
