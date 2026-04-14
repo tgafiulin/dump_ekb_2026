@@ -6,5 +6,6 @@ globs: **/*.html, content/**/*
 - One idea per slide.
 - Prefer short bullets over long paragraphs.
 - Use `.next` for staged reveals.
+- For every `ul.deck-list`, use `li.icon` and set explicit `data-icon` on each list item unless user asks otherwise.
 - Avoid more than 6 bullets per slide.
 - Write concise, presentation-friendly Russian copy by default.

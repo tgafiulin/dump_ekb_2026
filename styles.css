@@ -414,6 +414,11 @@
     border-radius: 0;
     background: none;
     box-shadow: none;
+    font-family: 'DeckIcons', sans-serif;
+    font-size: 0.95em;
+    font-weight: 400;
+    color: #0f766e;
+    line-height: 1;
 }
 
 .shower .slide.black ul.deck-list {
